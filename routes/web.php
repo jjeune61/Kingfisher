@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\CommentPageController;
 use App\Http\Controllers\ContentPageController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\NewsPageController;//Articles
@@ -32,6 +33,9 @@ Route::get('/articles',[NewsPageController::class, 'index']);//article section
 Route::get('/articles/{id}',[NewsPageController::class, 'listing']);//article section category
 
 Route::get('/content/{slug}',[ContentPageController::class, 'index']);//article content
+
+Route::get('/comments', [CommentPageController::class, 'index']);
+Route::post('/comments', [CommentPageController::class, 'store']);
 
 //ADMIN SIDE
 Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){

@@ -9,7 +9,7 @@
 <div class="row">
 <div class="col-md-8">
     <div class="entity_wrapper">
-    <div class="entity_title header_purple">
+    <div class="entity_title header_green">
         <h1><a>Articles</a></h1>
     </div>
     <!-- entity_title -->
@@ -99,8 +99,10 @@
                 <div class="media-body">
                     <h3 class="media-heading">
                         <a href="{{ '/content' }}/{{ $popular->slug }}" >{{ str_limit($popular->title, 20, '...') }}</a>
-                    </h3> <span class="media-date"><a>{{ date('F j Y', strtotime($popular->created_at)) }}</a>
-                    <br>by: <a>{{ $popular->creator->name }}</a></span>
+                    </h3> 
+                    <span class="media-date"><a>{{ date('F j Y', strtotime($popular->created_at)) }}</a>
+                    <br>by: <a>{{ $popular->creator->name }}</a>
+                    </span>
                     <div class="widget_article_social">
                         <span>
                             Total Views: <a> {{ $popular->view_count }}</a>
