@@ -38,14 +38,14 @@
                             </div>
                         @endif
                         <hr>
-                        {!! Form::open(['url' => 'admin/articles/store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open(['url' => 'publication/eic/articles/store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
                             <div class="form-group">
                                 {{Form::label('title', 'Title', ['class' => 'control-label mb-1'])}}
                                 {{Form::text('title', '',['class'=>'form-control', 'id'=>'title'])}}
                             </div>
                             <div class="form-group">
                                 {{Form::label('category', 'Category', ['class' => 'control-label mb-1'])}}
-                                {{ Form::select('category_id[]', $categories, null, ['class'=>'form-control myselect', 'placeholder'=>'Select Category']) }}
+                                {{ Form::select('category_id', $categories, null, ['class'=>'form-control myselect', 'placeholder'=>'Select Category']) }}
                             </div>
                             <div class="form-group">
                                 {{Form::label('short_description', 'Short Description', ['class' => 'control-label mb-1'])}}
@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 {{Form::label('description', 'Description', ['class' => 'control-label mb-1'])}}
-                                {{Form::textarea('description', '',['class'=>'form-control', 'id'=>'description'])}}
+                                {{Form::textarea('description', '',['class'=>'form-control', 'id'=>'article-ckeditor'])}}
                             </div>
                             <div class="form-group">
                                 {{Form::label('image', 'Image', ['class' => 'control-label mb-1'])}}
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-        </div> <!-- .card -->
+        </div> 
     </div>
 </div>
 @endsection

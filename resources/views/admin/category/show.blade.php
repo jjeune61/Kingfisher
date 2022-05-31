@@ -69,7 +69,6 @@
 
                                         {{ Form::open(['method'=>'delete','url'=>['/admin/category/delete/'. $category->id], 
                                         'style'=>'display:inline']) }}
-                                        {{ Form::submit('delete', ['class'=>'btn btn-danger']) }}
                                         {{ Form::close() }}
                                     </td>
                                     </tr>

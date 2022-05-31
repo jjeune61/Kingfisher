@@ -25,6 +25,9 @@
                     <a href="{{ route('permissions') }}"> <i class="menu-icon fa fa-lock"></i>Permissions </a>
                 </li>
                 <li>
+                    <a href="{{ route('audits') }}"> <i class="menu-icon fa fa-lock"></i>Audits </a>
+                </li>
+                <li>
                     <a href="{{ route('settings') }}"> <i class="menu-icon fa fa-gears"></i>Settings </a>
                 </li>
             </ul>

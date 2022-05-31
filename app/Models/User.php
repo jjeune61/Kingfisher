@@ -8,11 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Shanmuga\LaravelEntrust\Traits\LaravelEntrustUserTrait;
-
-class User extends Authenticatable
+use OwenIt\Auditing\Contracts\Auditable;
+class User extends Authenticatable implements Auditable
 {
     use HasApiTokens, HasFactory, Notifiable;
     use LaravelEntrustUserTrait;
+    use \OwenIt\Auditing\Auditable;
     /**
      * The attributes that are mass assignable.
      *

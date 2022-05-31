@@ -249,7 +249,6 @@ section {
 }
 
 .right_section .navbar-nav > li:first-child a:after {
-    content: " /";
     margin-left: 5px;
 }
 

@@ -24,7 +24,7 @@ class ArticleController extends Controller
         // }else{
         //     $articles = Article::with(['creator'])->where('created_by', Auth::user()->id)->latest()->get();
         // }
-        $articles = Article::latest()->get();
+        $articles = Article::where('publication_status', 'ready')->latest()->get();
         return view('admin.articles.show', compact('articles'));
     }
 
@@ -60,7 +60,7 @@ class ArticleController extends Controller
         $article->slug = str_slug($request->title,'-');
         $article->short_description = $request->short_description;;
         $article->description = $request->description;
-        $article->category_id = 1; //array to string conversion
+        $article->category_id = $request->category_id;; 
         $article->status = 1;
         $article->hot_news = 0;
         $article->view_count = 0;
@@ -151,7 +151,7 @@ class ArticleController extends Controller
         $article->slug = str_slug($request->title,'-');
         $article->short_description = $request->short_description;;
         $article->description = $request->description;
-        $article->category_id = 1; //array to string conversion
+        $article->category_id = $request->category_id;
         
         
         $article->save();

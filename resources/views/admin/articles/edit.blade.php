@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group">
                                 {{Form::label('category', 'Category', ['class' => 'control-label mb-1'])}}
-                                {{ Form::select('category_id[]', $categories, $article->category_id, ['class'=>'form-control myselect', 'data-placeholder'=>'Select Category']) }}
+                                {{ Form::select('category_id', $categories, $article->category_id, ['class'=>'form-control myselect', 'data-placeholder'=>'Select Category']) }}
 
                             </div>
                             <div class="form-group">
@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-group">
                                 {{Form::label('description', 'Description', ['class' => 'control-label mb-1'])}}
-                                {{Form::textarea('description', $article->description,['class'=>'form-control', 'id'=>'description'])}}
+                                {{Form::textarea('description', $article->description,['class'=>'form-control', 'id'=>'article-ckeditor'])}}
                             </div>
                             <div class="form-group">
                                 {{Form::label('image', 'Image', ['class' => 'control-label mb-1'])}}

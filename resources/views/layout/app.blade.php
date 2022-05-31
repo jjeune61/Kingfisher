@@ -19,6 +19,7 @@
 
     @include('inc.nav')
 
+
     @yield('content')
 
     @include('inc.footer')
