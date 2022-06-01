@@ -38,7 +38,7 @@
                             </div>
                         @endif
                         <hr>
-                        {!! Form::open(['url' => 'publication/eic/articles/store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open(['url' => 'admin/articles/store', 'method'=>'post', 'enctype'=>'multipart/form-data']) !!}
                             <div class="form-group">
                                 {{Form::label('title', 'Title', ['class' => 'control-label mb-1'])}}
                                 {{Form::text('title', '',['class'=>'form-control', 'id'=>'title'])}}
