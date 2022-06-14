@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "ckeditor/ckeditor": "^4.18",
-        "guzzlehttp/guzzle": "7.4.3",
+        "guzzlehttp/guzzle": "7.4.4",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.11",
         "laravel/helpers": "^1.5",
