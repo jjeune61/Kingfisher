@@ -41,12 +41,14 @@
                                         
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 
-                                    @if(Auth::user()->user_type !==0)
-                                        @if(Auth::user()->user_type == 1)
-                                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
-                                        @else
-                                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                                        @endif
+                                    @if(Auth::user()->user_type !==2)
+                                        <li><a class="dropdown-item" 
+                                            @if(Auth::user()->user_type == 1)
+                                                href="{{ route('dashboard') }}"
+                                            @elseif (Auth::user()->user_type == 3)
+                                                href="{{ route('writerDashboard') }}"
+                                            @endif
+                                        >Dashboard</a></li>
                                     @endif
 
                                     <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>

@@ -66,7 +66,7 @@ class ArticleController extends Controller
         $article->save();
         
         $file = $request->file('img');
-        $extension = $file->getClientOriginalExtension();
+        $extension = $file->extension();
         $main_image = 'article_main'.'_'.$article->id.'.'.$extension;
         $thumb_image = 'article_thumb'.'_'.$article->id.'.'.$extension;
         $list_image = 'article_list'.'_'.$article->id.'.'.$extension;
@@ -130,7 +130,7 @@ class ArticleController extends Controller
             @unlink(public_path('/article/'.$article->$list_image));
         
             $file = $request->file('img');
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
             $main_image = 'article_main'.'_'.$article->id.'.'.$extension;
             $thumb_image = 'article_thumb'.'_'.$article->id.'.'.$extension;
             $list_image = 'article_list'.'_'.$article->id.'.'.$extension;

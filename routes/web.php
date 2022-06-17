@@ -41,19 +41,26 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+|TODO: implement rate limiting before deploy / add guards/authentication per route
 */
+
+Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 //WEBSITE
-Route::get('/',[HomePageController::class, 'index'])->name('landing');//landing page
+Route::group(['prefix'=>'', 'middleware'=>'auth'], function(){
+    Route::get('/',[HomePageController::class, 'index'])->name('landing');//landing page
 
-Route::get('/articles',[NewsPageController::class, 'index'])->name('articles');//article section
-Route::get('/articles/{id}',[NewsPageController::class, 'listing']);//article section category
+    Route::get('/articles',[NewsPageController::class, 'index'])->name('articles');//article section
+    Route::get('/articles/{id}',[NewsPageController::class, 'listing']);//article section category
 
-Route::get('/content/{slug}',[ContentPageController::class, 'index']);//article content
+    Route::get('/content/{slug}',[ContentPageController::class, 'index']);//article content
 
-Route::get('/comments', [CommentPageController::class, 'index'])->name('comments');
-Route::post('/comments', [CommentPageController::class, 'store']);
+    Route::get('/comments', [CommentPageController::class, 'index'])->name('comments');
+    Route::post('/comments', [CommentPageController::class, 'store']);
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+});
 
 //ADMIN SIDE
 Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
@@ -114,7 +121,7 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         return view('admin.audit.audit');
     });
 
-    });
+});
     //PUBLICATION SIDE
     Route::group(['prefix'=>'/publication', 'middleware'=>'auth'], function(){
 
@@ -190,7 +197,3 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
             });
 
     });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

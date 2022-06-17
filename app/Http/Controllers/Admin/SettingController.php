@@ -30,7 +30,7 @@ class SettingController extends Controller
             @unlink(public_path('/others/'.$favicon_setttings->value));
 
             $file = $request->file('favicon');
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
             $favicon = 'favicon.'.$extension;
             $file->move(public_path('/others'),$favicon);
             $favicon_setttings->value =$favicon;
@@ -44,7 +44,7 @@ class SettingController extends Controller
             @unlink(public_path('/others/'.$web_settings->value));
 
             $file = $request->file('web_logo');
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
             $web_logo = 'web_logo.'.$extension;
             $file->move(public_path('/others'),$web_logo);
             $web_settings->value =$web_logo;
@@ -58,7 +58,7 @@ class SettingController extends Controller
             @unlink(public_path('/others/'.$admin_settings->value));
 
             $file = $request->file('admin_logo');
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
             $admin_logo = 'admin_logo.'.$extension;
             $file->move(public_path('/others'),$admin_logo);
             $admin_settings->value =$admin_logo;
