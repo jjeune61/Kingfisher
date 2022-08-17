@@ -17,8 +17,8 @@ class CommentPageController extends Controller
         ]);
 
         $comment = new Comment();
-        $comment->user_id =auth()->user()->id;
-        $comment->name =auth()->user()->name;
+        $comment->user_id = auth()->id;
+        $comment->name = auth()->name;
         $comment->comment = $request->comment;
         $comment->status = 0;
         $comment->save();

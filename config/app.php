@@ -216,7 +216,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'LaravelEntrust'   => Shanmuga\LaravelEntrust\Facades\LaravelEntrustFacade::class,
+        'LaravelEntrust' => Shanmuga\LaravelEntrust\Facades\LaravelEntrustFacade::class,
     ])->toArray(),
 
 ];

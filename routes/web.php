@@ -48,14 +48,13 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //WEBSITE
+Route::get('/',[HomePageController::class, 'index'])->name('landing');//landing page
+
+Route::get('/articles',[NewsPageController::class, 'index'])->name('articles');//article section
+Route::get('/articles/{id}',[NewsPageController::class, 'listing']);//article section category
+
+Route::get('/content/{slug}',[ContentPageController::class, 'index']);//article auth content
 Route::group(['prefix'=>'', 'middleware'=>'auth'], function(){
-    Route::get('/',[HomePageController::class, 'index'])->name('landing');//landing page
-
-    Route::get('/articles',[NewsPageController::class, 'index'])->name('articles');//article section
-    Route::get('/articles/{id}',[NewsPageController::class, 'listing']);//article section category
-
-    Route::get('/content/{slug}',[ContentPageController::class, 'index']);//article content
-
     Route::get('/comments', [CommentPageController::class, 'index'])->name('comments');
     Route::post('/comments', [CommentPageController::class, 'store']);
 
