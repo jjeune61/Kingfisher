@@ -94,7 +94,7 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
     Route::put('/comments/status/{id}', [CommentController::class, 'status']);
 
     
-    Route::get('/audit', [AuditController::class, 'index'])->name('audit');
+    Route::get('/audits', [AuditController::class, 'index'])->name('audit');
 
     Route::get('/roles', [RoleController::class, 'index'])->name('roles');
     Route::get('/roles/create', [RoleController::class, 'create']);

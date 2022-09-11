@@ -10,7 +10,7 @@ use App\Models\Category;
 class AuditController extends Controller
 {
     public function index(){
-        $audits = Category::first()->audits();
-        return view('admin.audit.audit', compact('audits'));
+        $audits = article::find(1)->audits;
+        return view('admin.audit.audits', compact('audits'));
     }
 }

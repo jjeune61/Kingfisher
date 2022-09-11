@@ -16,7 +16,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Authors</h1>
+                        <h1>Users</h1>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                         @endif
 
                           <div class="card-header">
-                              <strong class="card-title">Authors Table</strong>
+                              <strong class="card-title">Users Table</strong>
                               <a href="{{ url('/admin/authors/create') }}" class="btn btn-primary pull-right">
                                 Create
                               </a>

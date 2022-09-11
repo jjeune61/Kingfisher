@@ -7,7 +7,7 @@
                     <a href="{{ route('dashboard') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                 </li>
                 <li>
-                    <a href="{{ route('authors') }}"> <i class="menu-icon fa fa-user"></i>Authors </a>
+                    <a href="{{ route('authors') }}"> <i class="menu-icon fa fa-user"></i>Users </a>
                 </li>
                 <li>
                     <a href="{{ route('article') }}"> <i class="menu-icon fa fa-book"></i>Articles </a>

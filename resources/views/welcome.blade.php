@@ -9,7 +9,9 @@
             </div>
             <div class="col-md-7" style="margin-bottom: 3%">
                 <div class="feature_article_wrapper">
+                    @forelse ($featured as $featured)
                     <div class="feature_article_img">
+                        
                         <a href="{{ url('/content') }}/{{ $featured->slug }}" target="_self"><img class="img-responsive top_static_article_img" 
                             src="{{ asset('article/') }}/{{ $featured->main_image }}"
                             alt="{{ $featured->title }} image">
@@ -32,6 +34,9 @@
                             {{ str_limit($featured->short_description, 50, '...') }}
                         </div>
                         <!-- feature_article_content -->
+                        @empty
+                            <h1>No Featured Post</h1>
+                        @endforelse
                     </div>
                     <!-- feature_article_inner -->
 

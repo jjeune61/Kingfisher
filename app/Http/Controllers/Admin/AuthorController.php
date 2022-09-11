@@ -19,7 +19,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $authors = User::where('user_type', 2)->get();
+        $authors = User::all();
         return view('admin.author.show', compact('authors'));
     }
 
