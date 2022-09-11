@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -98,13 +99,15 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        
+
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'unique:users,email,'.$id,
             'password' => 'required|size:8',
             'roles.*'=>'required'
         ]);
-
         $author = User::find($id);
         $author->name = $request->name;
         $author->email = $request->email;
