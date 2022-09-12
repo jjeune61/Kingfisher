@@ -11,6 +11,7 @@ class AuditController extends Controller
 {
     public function index(){
         $audits = article::find(1)->audits;
+        // $audits = Article::with('Auditable')->get();
         return view('admin.audit.audits', compact('audits'));
     }
 }

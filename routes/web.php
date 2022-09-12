@@ -117,7 +117,6 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
 
     Route::get('/audit', function(){
         return Article::with('audits')->get();
-        return view('admin.audit.audit');
     });
 
 });
