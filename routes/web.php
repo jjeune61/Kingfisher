@@ -191,7 +191,7 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::get('/pendings/edit/{id}', [EICPendingController::class, 'edit'])->name('eicPending-edit');
         Route::put('/pendings/approve/{id}', [EICPendingController::class, 'approve'])->name('eicPending-approve');
         Route::post('/pendings/disapprove/{id}', [EICPendingController::class, 'disapprove'])->name('eicPending-disapprove');
-    
+                
             });
 
     });
