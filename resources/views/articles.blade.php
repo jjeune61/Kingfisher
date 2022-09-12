@@ -3,8 +3,6 @@
 @section('content')
 
 <div class="container">
-    
-@include('inc.categories')
 
 <div class="row">
 <div class="col-md-8">

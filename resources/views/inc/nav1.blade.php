@@ -127,6 +127,7 @@
                                     <li>
                                         <div class="m-menu-content">
                                             <ul class="col-sm-3">
+                                                <li class="dropdown-header">Categories</li>
                                                 <li><a href="{{ url('/articles') }}">General</a></li>
                                             @forelse ($shareData['categories'] as $category)
                                                 <li><a href="{{ url('/articles') }}/{{ $category->id }}">{{ $category->name }}</a></li>

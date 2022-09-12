@@ -1,7 +1,5 @@
 @extends('layout.app')
 @section('content')
-<div class="uc-mobile-menu-pusher">
-<div class="content-wrapper">
 
 <section id="entity_section" class="entity_section">
 <div class="container">
