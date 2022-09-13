@@ -46,11 +46,13 @@
                             </div>
                             <div class="form-group">
                                 {{Form::label('email', 'Email', ['class' => 'control-label mb-1'])}}
-                                {{Form::text('email', $author->email,['class'=>'form-control', 'id'=>'email'])}}
+                                {{Form::text('email',$author->email ,['class'=>'form-control', 'id'=>'email'])}}
                             </div>
                             <div class="form-group">
                                 {{Form::label('password', 'Password', ['class' => 'control-label mb-1'])}}
-                                {{Form::password('password',['class'=>'form-control', 'id'=>'password'])}}
+                            {{-- {{Form::password('password', ['class'=>'form-control', 'id'=>'password'])}} --}} 
+                                {{Form::input('password', 'password', $author->password,['class'=>'form-control', 'id'=>'password'])}}
+                                
                             </div>
                             <div class="form-group">
                                 {{Form::label('role', 'Roles', array('class'=>'control-label mb-1'))}}

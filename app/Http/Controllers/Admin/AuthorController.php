@@ -46,7 +46,7 @@ class AuthorController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => ['required', Password::defaults()],
+            'password' => ['required', Password::defaults()],//rule from appserviceprover
             'roles.*'=>'required'
         ]);
 
@@ -101,12 +101,10 @@ class AuthorController extends Controller
     public function update(Request $request, $id)
     {
 
-        
-
         $this->validate($request, [
             'name' => 'required',
             'email' => 'unique:users,email,'.$id,
-            'password' => ['required', Password::defaults()],
+            'password' => ['required', Password::defaults()],//rule from appserviceprover
             'roles.*'=>'required'
         ]);
         $author = User::find($id);
