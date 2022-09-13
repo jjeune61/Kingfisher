@@ -9,6 +9,7 @@ use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class AuthorController extends Controller
 {
@@ -45,7 +46,7 @@ class AuthorController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|size:8',
+            'password' => ['required', Password::defaults()],
             'roles.*'=>'required'
         ]);
 
@@ -105,7 +106,7 @@ class AuthorController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'unique:users,email,'.$id,
-            'password' => 'required|size:8',
+            'password' => ['required', Password::defaults()],
             'roles.*'=>'required'
         ]);
         $author = User::find($id);

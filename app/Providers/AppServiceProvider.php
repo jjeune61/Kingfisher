@@ -5,7 +5,10 @@ namespace App\Providers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Setting;
+use Illuminate\Validation\Rules\Password;
+// use Illuminate\Support\Facades\Password;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +29,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Password::defaults(function () {
+            return Password::min(8)
+                        ->letters()
+                        ->numbers()
+                        ->mixedCase()
+                        ->symbols()
+                        ->uncompromised();
+        });
+
         $settings = Setting::all(); //site settings to implement in frontend
         foreach ($settings as $key => $setting) {
             if($key === 0) $system_name = $setting->value;
