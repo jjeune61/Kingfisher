@@ -50,7 +50,7 @@
                             </div>
                             <div class="form-group">
                                 {{Form::label('password', 'Password', ['class' => 'control-label mb-1'])}}
-                            {{-- {{Form::password('password', ['class'=>'form-control', 'id'=>'password'])}} --}} 
+                            {{-- {{Form::password('password', ['class'=>'form-control', 'id'=>'password'])}} --}} {{-- cant output password --}}
                                 {{Form::input('password', 'password', $author->password,['class'=>'form-control', 'id'=>'password'])}}
                                 
                             </div>

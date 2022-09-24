@@ -54,6 +54,7 @@ Route::get('/articles',[NewsPageController::class, 'index'])->name('articles');/
 Route::get('/articles/{id}',[NewsPageController::class, 'listing']);//article section category
 
 Route::get('/content/{slug}',[ContentPageController::class, 'index']);//article auth content
+
 Route::group(['prefix'=>'', 'middleware'=>'auth'], function(){
     Route::get('/comments', [CommentPageController::class, 'index'])->name('comments');
     Route::post('/comments', [CommentPageController::class, 'store']);
