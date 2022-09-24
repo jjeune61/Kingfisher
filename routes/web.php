@@ -131,6 +131,7 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::get('/articles/create', [WriterArticleController::class, 'create']);
         Route::post('/articles/store', [WriterArticleController::class, 'store']);
 
+
         
         Route::get('/drafts', [DraftController::class, 'index'])->name('writerArticleDrafts');
         Route::get('/drafts/edit/{id}', [DraftController::class, 'edit'])->name('draft-edit');
