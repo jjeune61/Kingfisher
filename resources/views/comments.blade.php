@@ -7,14 +7,14 @@
 <div class="col-md-8">
 
 <div class="entity_title text-center">
-        <h1>Comment section</h1>
+        <h1>Forum section</h1>
     </div><hr>
     <!-- entity_title -->
 
 <div class="readers_comment">
     <div class="entity_comments">
         <div class="entity_comment_from">
-            {{ Form::open(array('url'=>'/comments', 'method'=>'post')) }} 
+            {{ Form::open(array('url'=>'/forum', 'method'=>'post')) }} 
                 <div class="form-group">
                     {{ Form::text('comment', null, ['class'=>'form-control', 'id'=>'comment', 'placeholder'=>'Add comment...']) }}
                 </div>

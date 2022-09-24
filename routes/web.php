@@ -1,5 +1,12 @@
 <?php
+//website
+use App\Http\Controllers\CommentPageController;
+use App\Http\Controllers\ContentPageController;
+use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\NewsPageController;//Articles
+use App\Http\Controllers\ProfileController;
 
+//admin side
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AuditController;
 use App\Http\Controllers\Admin\AuthorController;//Users 
@@ -9,11 +16,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\CommentPageController;
-use App\Http\Controllers\ContentPageController;
-use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\NewsPageController;//Articles
-use App\Http\Controllers\ProfileController;
+
+//publication side
 use App\Http\Controllers\Publication\Associate\DashboardController as AssociateDashboardController;
 use App\Http\Controllers\Publication\Associate\PendingController as AssociatePendingController;
 use App\Http\Controllers\Publication\Copy\DashboardController as CopyDashboardController;
@@ -27,6 +31,7 @@ use App\Http\Controllers\Publication\Section\PendingController;
 use App\Http\Controllers\Publication\Writer\ArticleController as WriterArticleController;
 use App\Http\Controllers\Publication\Writer\DashboardController as WriterDashboardController;
 use App\Http\Controllers\Publication\Writer\DraftController;
+
 use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
@@ -56,8 +61,8 @@ Route::get('/articles/{id}',[NewsPageController::class, 'listing']);//article se
 Route::get('/content/{slug}',[ContentPageController::class, 'index']);//article auth content
 
 Route::group(['prefix'=>'', 'middleware'=>'auth'], function(){
-    Route::get('/comments', [CommentPageController::class, 'index'])->name('comments');
-    Route::post('/comments', [CommentPageController::class, 'store']);
+    Route::get('/forum', [CommentPageController::class, 'index'])->name('forum');
+    Route::post('/forum', [CommentPageController::class, 'store']);
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 });
@@ -104,12 +109,12 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
     Route::put('/roles/edit/{id}', [RoleController::class, 'update'])->name('role-update');
     Route::delete('/roles/delete/{id}', [RoleController::class, 'destroy']);
 
-    Route::get('/permission', [PermissionController::class, 'index'])->name('permissions');
-    Route::get('/permission/create', [PermissionController::class, 'create']);
-    Route::post('/permission/store', [PermissionController::class, 'store']);
-    Route::get('/permission/edit/{id}', [PermissionController::class, 'edit'])->name('permission-edit');
-    Route::put('/permission/edit/{id}', [PermissionController::class, 'update'])->name('permission-update');
-    Route::delete('/permission/delete/{id}', [PermissionController::class, 'destroy']);
+    // Route::get('/permission', [PermissionController::class, 'index'])->name('permissions');
+    // Route::get('/permission/create', [PermissionController::class, 'create']);
+    // Route::post('/permission/store', [PermissionController::class, 'store']);
+    // Route::get('/permission/edit/{id}', [PermissionController::class, 'edit'])->name('permission-edit');
+    // Route::put('/permission/edit/{id}', [PermissionController::class, 'update'])->name('permission-update');
+    // Route::delete('/permission/delete/{id}', [PermissionController::class, 'destroy']);
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
     Route::put('/settings/update', [SettingController::class, 'update'])->name('settings-update');

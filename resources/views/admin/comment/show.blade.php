@@ -16,7 +16,7 @@
                 <div class="col-sm-4">
                     <div class="page-header float-left">
                         <div class="page-title">
-                            <h1>comments</h1>
+                            <h1>Forum contents</h1>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             @endif
 
                             <div class="card-header">
-                                <strong class="card-title">comments Table</strong>
+                                <strong class="card-title">Forum contents Table</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -42,7 +42,7 @@
                                     <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Comment</th>
+                                    <th>Content</th>
                                     <th>Status</th>
                                     </tr>
                                 </thead>

@@ -827,7 +827,7 @@ section {
     content         : " ";
     text-shadow     : none;
     width           : 15%;
-    background-color: #5f35ac;
+    background-color: #32a34a;
     z-index         : 2;
 }
 
@@ -866,7 +866,7 @@ section {
     content         : " ";
     text-shadow     : none;
     width           : 15%;
-    background-color: #000;
+    background-color: #32a34a;
     z-index         : 2;
 }
 
@@ -1675,7 +1675,7 @@ section {
 -----------------------------------------------*/
 
 .footer_bottom_Section {
-    border-top: 2px solid #000;
+    border-top: 2px solid #32a34a;
     padding: 30px 0;
     text-transform: uppercase;
     text-align: center;

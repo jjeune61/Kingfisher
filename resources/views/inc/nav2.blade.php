@@ -24,7 +24,7 @@
                     </ul>
                 </li>
                 @auth
-                <li><a href="{{ route('comments') }}">Comment Section</a></li>
+                <li><a href="{{ route('forum') }}">Forum Section</a></li>
                 @endauth
             </ul>
         </div>

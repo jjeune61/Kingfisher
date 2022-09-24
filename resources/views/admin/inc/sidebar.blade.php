@@ -16,14 +16,14 @@
                     <a href="{{ route('category') }}"> <i class="menu-icon fa fa-tags"></i>Categories </a>
                 </li>
                 <li>
-                    <a href="{{ route('comment') }}"> <i class="menu-icon fa fa-comments"></i>Comments </a>
+                    <a href="{{ route('comment') }}"> <i class="menu-icon fa fa-comments"></i>Forum Contents </a>
                 </li>
                 <li>
                     <a href="{{ route('roles') }}"> <i class="menu-icon fa fa-users"></i>Roles </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('permissions') }}"> <i class="menu-icon fa fa-lock"></i>Permissions </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{ route('audits') }}"> <i class="menu-icon fa fa-lock"></i>Audits </a>
                 </li>

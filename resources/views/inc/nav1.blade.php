@@ -61,7 +61,7 @@
                                     @endif
 
                                     <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
-                                    <li><a class="dropdown-item">Your Content</a></li>
+                                    {{-- <li><a class="dropdown-item">Your Content</a></li> --}}
                                     <li><a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -86,12 +86,11 @@
                                             <form role="form">
                                                 <!-- Input Group -->
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Type Something"> <span class="input-group-btn">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-primary">Search
-                                                                            </button>
-                                                                        </span></div>
+                                                    <input type="text" class="form-control" placeholder="Type Something"> 
+                                                        <span class="input-group-btn">
+                                                            <button type="submit" class="btn btn-success">Search </button>
+                                                        </span>
+                                                </div>
                                             </form>
                                         </div>
                                     </li>
@@ -140,7 +139,7 @@
                                 </ul>
                             </li>      
                             @auth
-                            <li><a href="{{ route('comments') }}">Comment Section</a></li>
+                            <li><a href="{{ route('forum') }}">Forum Section</a></li>
                             @endauth
                         </ul>
                     </div>
