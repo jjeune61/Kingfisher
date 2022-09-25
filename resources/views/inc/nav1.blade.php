@@ -83,21 +83,21 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="head-search">
-                                            <form role="form">
-                                                <!-- Input Group -->
+                                            {!! Form::open(['url' => '/search', 'method'=>'get', 'enctype'=>'multipart/form-data']) !!}
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Type Something"> 
-                                                        <span class="input-group-btn">
-                                                            <button type="submit" class="btn btn-success">Search </button>
-                                                        </span>
+                                                    {{Form::text('search', request()->query('search'), ['class' => 'form-control', 'placeholder' => 'type something...'] )}}
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-success">Search</button>
+                                                </span>
                                                 </div>
-                                            </form>
+                                            {!! Form::close() !!}
                                         </div>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                         <!-- Search Section -->
+
                     </div>
                     <!-- Right Header Section -->
                 </div>

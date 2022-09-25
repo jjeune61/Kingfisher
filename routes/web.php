@@ -31,7 +31,7 @@ use App\Http\Controllers\Publication\Section\PendingController;
 use App\Http\Controllers\Publication\Writer\ArticleController as WriterArticleController;
 use App\Http\Controllers\Publication\Writer\DashboardController as WriterDashboardController;
 use App\Http\Controllers\Publication\Writer\DraftController;
-
+use App\Http\Controllers\SearchController;
 use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +59,8 @@ Route::get('/articles',[NewsPageController::class, 'index'])->name('articles');/
 Route::get('/articles/{id}',[NewsPageController::class, 'listing']);//article section category
 
 Route::get('/content/{slug}',[ContentPageController::class, 'index']);//article auth content
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');//search page
 
 Route::group(['prefix'=>'', 'middleware'=>'auth'], function(){
     Route::get('/forum', [CommentPageController::class, 'index'])->name('forum');
