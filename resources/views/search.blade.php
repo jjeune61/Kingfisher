@@ -11,7 +11,7 @@
                     <img class="img-responsive" src="{{ asset('article/') }}/{{ $searches->thumb_image }}" alt="{{ $searches->title }} image">
                     </a>
                 </div>
-                <!----top_article_img------>
+                <!----article_img------>
             </div>
             <div class="col-md-6">
                 <span class="tag green">{{ $searches->category->name }}</span>
