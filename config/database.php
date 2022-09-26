@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Str;
 
+
+$DATABASE_URL=parse_url('DATABASE_URL');
+
+
 return [
 
     /*
@@ -46,11 +50,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),//change to the value from .env file
-            'username' => env('DB_USERNAME', 'forge'),//change to the value from .env file
-            'password' => env('DB_PASSWORD', ''),//change to the value from .env file
+            'host' => $DATABASE_URL['host'],   //env('DB_HOST', '127.0.0.1'),
+            'port' => $DATABASE_URL['host'],   //env('DB_PORT', '3306'),
+            'database' => ltrim($DATABASE_URL['path'],"/"), //env('DB_DATABASE', 'forge'),      //change to the value from .env file
+            'username' => $DATABASE_URL['user'],    //env('DB_USERNAME', 'forge'),      //change to the value from .env file
+            'password' => $DATABASE_URL['pass'],    //env('DB_PASSWORD', ''),       //change to the value from .env file
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
