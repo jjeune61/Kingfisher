@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
-
+use App\Http\Controllers\Auth\TermsConditionController;
 //publication side
 use App\Http\Controllers\Publication\Associate\DashboardController as AssociateDashboardController;
 use App\Http\Controllers\Publication\Associate\PendingController as AssociatePendingController;
@@ -52,9 +52,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//TERMS AND CONDITION
-Route::get('/termscondition','App\Http\Controllers\Auth\TermsConditionController@termscondition');
 
+
+Route::get('/termscondition', [TermsConditionController::class, 'termscondition']);//TERMS AND CONDITION
 
 //WEBSITE
 Route::get('/',[HomePageController::class, 'index'])->name('landing');//landing page
@@ -204,12 +204,7 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::get('/pendings/edit/{id}', [EICPendingController::class, 'edit'])->name('eicPending-edit');
         Route::put('/pendings/approve/{id}', [EICPendingController::class, 'approve'])->name('eicPending-approve');
         Route::post('/pendings/disapprove/{id}', [EICPendingController::class, 'disapprove'])->name('eicPending-disapprove');
-<<<<<<< HEAD
                 
-=======
-         
-   
->>>>>>> Azagra
-            });
+        });
 
     });
