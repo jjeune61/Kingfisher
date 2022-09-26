@@ -19,7 +19,7 @@
                         <p>&copy; Copyright 2022 The Kingfisher</p>
                     </div>
                     <div class="col-sm-3">
-                        <p>South Luzon State University</p>
+                        <p>Southern Luzon State University</p>
                     </div>
                 </div>
             </div>
