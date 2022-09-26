@@ -39,26 +39,26 @@ class AppServiceProvider extends ServiceProvider
                         ->uncompromised();
         });
 
-        // $settings = Setting::all(); //site settings to implement in frontend
-        // foreach ($settings as $key => $setting) {
-        //     if($key === 0) $system_name = $setting->value;
-        //     elseif($key === 1) $favicon = $setting->value;
-        //     elseif($key === 2) $web_logo = $setting->value;
-        //     elseif($key === 3) $admin_logo = $setting->value;
-        // }
+        $settings = Setting::all(); //site settings to implement in frontend
+        foreach ($settings as $key => $setting) {
+            if($key === 0) $system_name = $setting->value;
+            elseif($key === 1) $favicon = $setting->value;
+            elseif($key === 2) $web_logo = $setting->value;
+            elseif($key === 3) $admin_logo = $setting->value;
+        }
 
-        // $categories = Category::where('status', 1)->get();
-        // $popular = Article::where('status', 1)->orderBy('view_count','DESC')->limit(10)->get();//side articles
+        $categories = Category::where('status', 1)->get();
+        $popular = Article::where('status', 1)->orderBy('view_count','DESC')->limit(10)->get();//side articles
 
-        // $shareData = array(
-        //     'system_name' => $system_name,
-        //     'favicon' => $favicon,
-        //     'web_logo' => $web_logo,
-        //     'admin_logo' => $admin_logo,
-        //     'categories' => $categories,
-        //     'popular'=>$popular,
-        // );
+        $shareData = array(
+            'system_name' => $system_name,
+            'favicon' => $favicon,
+            'web_logo' => $web_logo,
+            'admin_logo' => $admin_logo,
+            'categories' => $categories,
+            'popular'=>$popular,
+        );
         
-        // view()->share('shareData', $shareData);
+        view()->share('shareData', $shareData);
     }   
 }
