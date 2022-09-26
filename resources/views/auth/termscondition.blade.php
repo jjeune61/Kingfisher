@@ -100,7 +100,7 @@
 
         <div id="formFooter">
             <button type="button" class="btn btn-outline-danger">
-                <a  class="underlineHover a "href="{{ url('/register') }}">DECLINE</a>
+                <a  class="underlineHover a "href="{{ url('/') }}">DECLINE</a>
             </button>
             <button type="button" class="btn btn-success">
                 <a  class="text-white underlineHover a "href="{{ url('/register') }}">ACCEPT</a>
