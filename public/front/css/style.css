@@ -308,7 +308,7 @@ section {
 
 .right_section .navbar-nav > li > a:hover,
 .right_section .btn:hover {
-    color: #3a71b4;
+    color: #53ad50;
     background-color: #fff;
 }
 
@@ -512,7 +512,7 @@ section {
 }
 
 .dropdown-menu li a:hover {
-    color: #31aae2;
+    color: #53ad50;
     background-color: #f5f5f5;
     padding-left: 25px;
 }
@@ -520,7 +520,7 @@ section {
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:focus,
 .dropdown-menu > .active > a:hover {
-    color: #31aae2;
+    color: #53ad50;
     background-color: #f5f5f5;
     padding-left: 25px;
 }
@@ -1176,7 +1176,7 @@ section {
 
 .readers_comment .media {
     padding: 15px 0 0;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #63af44;
     margin-bottom: 15px;
 }
 
@@ -1254,7 +1254,7 @@ section {
 }
 
 .readers_comment .media {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #63af44;
     padding-top: 20px;
 }
 

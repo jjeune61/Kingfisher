@@ -18,9 +18,9 @@
                 <li>
                     <a href="{{ route('comment') }}"> <i class="menu-icon fa fa-comments"></i>Forum Contents </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('roles') }}"> <i class="menu-icon fa fa-users"></i>Roles </a>
-                </li>
+                </li> --}}
                 {{-- <li>
                     <a href="{{ route('permissions') }}"> <i class="menu-icon fa fa-lock"></i>Permissions </a>
                 </li> --}}

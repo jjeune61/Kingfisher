@@ -56,6 +56,14 @@
                                                 href="{{ route('dashboard') }}"
                                             @elseif (Auth::user()->user_type == 3)
                                                 href="{{ route('writerDashboard') }}"
+                                            @elseif (Auth::user()->user_type == 4)
+                                                href="{{ route('sectionDashboard') }}"
+                                            @elseif (Auth::user()->user_type == 5)
+                                                href="{{ route('copyDashboard') }}"
+                                            @elseif (Auth::user()->user_type == 6)
+                                                href="{{ route('associateDashboard') }}"
+                                            @elseif (Auth::user()->user_type == 7)
+                                                href="{{ route('eicDashboard') }}"
                                             @endif
                                         >Dashboard</a></li>
                                     @endif
@@ -77,7 +85,7 @@
                         </ul>
                         <!-- user dropdown Section (language section)-->
 
-                        <ul class="nav-cta hidden-xs">
+                        <ul class="nav navbar-brand hidden-xs">
                             <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><i
                                     class="fa fa-search"></i></a>
                                 <ul class="dropdown-menu">
@@ -97,7 +105,6 @@
                             </li>
                         </ul>
                         <!-- Search Section -->
-
                     </div>
                     <!-- Right Header Section -->
                 </div>
@@ -117,6 +124,7 @@
                         </button>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
+                    
                     <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav">
                             <li><a href="{{ route('landing') }}">Home</a></li>
@@ -146,6 +154,7 @@
                     <!-- .navbar-collapse -->
                 </div>
                 <!-- .container -->
+                
             </nav>
             <!-- .nav -->
         </div>

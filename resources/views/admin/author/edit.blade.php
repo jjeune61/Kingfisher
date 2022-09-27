@@ -26,7 +26,7 @@
                 <div id="pay-invoice">
                     <div class="card-body">
                         <div class="card-title">
-                            <h3 class="text-center">Roles</h3>
+                            <h3 class="text-center">User infromation Update</h3>
                         </div>
                         @if(count($errors)>0)
                             <div class="alert alert-danger" role="alert">
@@ -40,36 +40,34 @@
                         <hr>
                         {{ Form::model($author, ['route' => ['author-update', $author->id],'method'=>'put']) }} 
 
-                            <div class="form-group">
-                                {{Form::label('name', 'Name', ['class' => 'control-label mb-1'])}}
-                                {{Form::text('name', $author->name,['class'=>'form-control', 'id'=>'name'])}}
-                            </div>
-                            <div class="form-group">
-                                {{Form::label('email', 'Email', ['class' => 'control-label mb-1'])}}
-                                {{Form::text('email',$author->email ,['class'=>'form-control', 'id'=>'email'])}}
-                            </div>
-                            <div class="form-group">
-                                {{Form::label('password', 'Password', ['class' => 'control-label mb-1'])}}
-                            {{-- {{Form::password('password', ['class'=>'form-control', 'id'=>'password'])}} --}} {{-- cant output password --}}
-                                {{Form::input('password', 'password', $author->password,['class'=>'form-control', 'id'=>'password'])}}
-                                
-                            </div>
-                            <div class="form-group">
-                                {{Form::label('role', 'Roles', array('class'=>'control-label mb-1'))}}
-                                {{ Form::select('roles[]', $roles, $selectedRoles, ['class'=>'myselect', 'data-placeholder'=>'Select Role(s)']) }}
-                            </div>
-                            <div>
-                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                    <span id="payment-button-amount">Update</span>
-                                    <span id="payment-button-sending" style="display:none;">Updating…</span>
-                                </button>
-                            </div>
-                        
+                        <div class="form-group">
+                            {{Form::label('name', 'Name', ['class' => 'control-label mb-1'])}}
+                            {{Form::text('name', $author->name,['class'=>'form-control', 'id'=>'name'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('email', 'Email', ['class' => 'control-label mb-1'])}}
+                            {{Form::text('email',$author->email ,['class'=>'form-control', 'id'=>'email'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('password', 'Password', ['class' => 'control-label mb-1'])}}
+                        {{-- {{Form::password('password', ['class'=>'form-control', 'id'=>'password'])}} --}} {{-- cant output password --}}
+                            {{Form::input('password', 'password', $author->password,['class'=>'form-control', 'id'=>'password'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('userTypes', 'User Type', array('class'=>'control-label mb-1'))}}
+                            {{ Form::select('userTypes', $userTypes, $author->user_type, ['class'=>'myselect', 'data-placeholder'=>'Select User Type']) }}
+                        </div>
+                        <div>
+                            <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                <span id="payment-button-amount">Update</span>
+                            </button>
+                        </div>
+
                         {{  Form::close()  }}
                     </div>
                 </div>
             </div>
-        </div> <!-- .card -->
+        </div> 
     </div>
 </div>
 @endsection

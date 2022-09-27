@@ -109,12 +109,12 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
     
     Route::get('/audits', [AuditController::class, 'index'])->name('audit');
 
-    Route::get('/roles', [RoleController::class, 'index'])->name('roles');
-    Route::get('/roles/create', [RoleController::class, 'create']);
-    Route::post('/roles/store', [RoleController::class, 'store']);
-    Route::get('/roles/edit/{id}', [RoleController::class, 'edit'])->name('role-edit');
-    Route::put('/roles/edit/{id}', [RoleController::class, 'update'])->name('role-update');
-    Route::delete('/roles/delete/{id}', [RoleController::class, 'destroy']);
+    // Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+    // Route::get('/roles/create', [RoleController::class, 'create']);
+    // Route::post('/roles/store', [RoleController::class, 'store']);
+    // Route::get('/roles/edit/{id}', [RoleController::class, 'edit'])->name('role-edit');
+    // Route::put('/roles/edit/{id}', [RoleController::class, 'update'])->name('role-update');
+    // Route::delete('/roles/delete/{id}', [RoleController::class, 'destroy']);
 
     // Route::get('/permission', [PermissionController::class, 'index'])->name('permissions');
     // Route::get('/permission/create', [PermissionController::class, 'create']);

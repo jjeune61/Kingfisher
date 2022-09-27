@@ -30,12 +30,13 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
+    {   
+        // to enable http links when using https 
         // if(env('APP_ENV') != 'local'){
         //     URL::forceScheme('https');
         // }
 
-        //password validation
+            //password validation
         Password::defaults(function () {
             return Password::min(8)
                         ->letters()
@@ -44,6 +45,8 @@ class AppServiceProvider extends ServiceProvider
                         ->symbols()
                         ->uncompromised();
         });
+
+        if (!app()->runningInConsole()) {
 
         $settings = Setting::all(); //site settings to implement in frontend
         foreach ($settings as $key => $setting) {
@@ -66,5 +69,6 @@ class AppServiceProvider extends ServiceProvider
         );
         
         view()->share('shareData', $shareData);
+        }
     }   
 }

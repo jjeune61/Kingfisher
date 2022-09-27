@@ -42,7 +42,7 @@
                           <div class="card-body">
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                               <thead>
-                                <tr>
+                                <tr class="text-center">
                                   <th>#</th>
                                   <th>Image</th>
                                   <th>Title</th>
@@ -56,7 +56,7 @@
                               </thead>
                               <tbody>
                                 @foreach ($articles as $i=>$article)
-                                <tr>
+                                <tr class="text-center">
                                   <td>{{ ++$i }}</td>
                                   <td>
                                     @if(file_exists(public_path('/article/').$article->list_image))
@@ -67,7 +67,7 @@
                                   <td>{{ $article->title }}</td>
                                   <td>{{ $article->creator->name }}</td>
                                   <td>{{ $article->category->name}}</td>
-                                  <td>{{ $article->view_count }}</td>
+                                  <td >{{ $article->view_count }}</td>
                                   <td>
                                     {{ Form::open(['method'=>'put','url'=>['/admin/articles/status/'. $article->id], 
                                         'style'=>'display:inline']) }}
@@ -82,9 +82,9 @@
                                     {{ Form::open(['method'=>'put','url'=>['/admin/articles/hot/news/'. $article->id], 
                                         'style'=>'display:inline']) }}
                                         @if ($article->hot_news === 1)
-                                            {{ Form::submit('No', ['class'=>'btn btn-danger']) }}
+                                            {{ Form::submit('Remove', ['class'=>'btn btn-danger']) }}
                                             @else
-                                            {{ Form::submit('Yes', ['class'=>'btn btn-success']) }}
+                                            {{ Form::submit('Feature', ['class'=>'btn btn-success']) }}
                                         @endif
                                         {{ Form::close() }}
                                   </td>

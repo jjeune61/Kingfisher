@@ -18,6 +18,7 @@
     <div class="uc-mobile-menu-pusher">
         <div class="content-wrapper">
             @include('inc.nav1')
+            <br>
             @yield('content')
             @include('inc.footer')
         </div>
