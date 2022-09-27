@@ -58,7 +58,15 @@
                                   <td>{{ ++$i }}</td>
                                   <td>{{ $author->name }}</td>
                                   <td>{{ $author->email }}</td>
-                                  <td>{{ $author->status }}</td>
+                                  <td>
+                                    {{ Form::open(['method'=>'put','url'=>['/admin/authors/status/'. $author->id],'style'=>'display:inline']) }}
+                                        @if ($author->status === 1)
+                                            {{ Form::submit('Deactivate', ['class'=>'btn btn-danger']) }}
+                                            @else
+                                            {{ Form::submit('Activate', ['class'=>'btn btn-success']) }}
+                                        @endif
+                                        {{ Form::close() }}
+                                  </td>
                                   <td>{{ $author->user_type }}</td>
                                   <td>
                                     @if ($author->roles()->get())

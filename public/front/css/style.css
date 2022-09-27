@@ -936,7 +936,7 @@ section {
     font-size       : 15px;
 }
 
-.category_article_date:after {
+/* .category_article_date:after {
     position        : absolute;
     margin          : 0;
     height          : 1px;
@@ -944,8 +944,8 @@ section {
     bottom          : 62%;
     content         : " ";
     width           : 50%;
-    background-color: #eee;
-}
+    background-color: rgb(50, 177, 92);
+} */
 
 @media screen and (max-width: 768px) {
     .top_article_img {
@@ -1335,7 +1335,7 @@ section {
     content: " ";
     text-shadow: none;
     width: 15%;
-    background-color: #000;
+    background-color: #32a34a;
     z-index: 2;
 }
 
@@ -1451,7 +1451,7 @@ section {
     text-align: right;
     position: absolute;
     top: 12px;
-    border-top: 1px solid #f1f1f1;
+    border-top: 1px solid #29a72f;
 }
 
 /* ---------------------------------------------- /*
@@ -1477,7 +1477,7 @@ section {
     text-align: right;
     position: absolute;
     top: 1em;
-    border-top: 1px solid #f1f1f1;
+    border-top: 1px solid #29a72f;
 }
 
 .tag {

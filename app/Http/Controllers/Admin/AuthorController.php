@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -111,14 +112,12 @@ class AuthorController extends Controller
         $author->name = $request->name;
         $author->email = $request->email;
         $author->password = Hash::make($request->password);
-        $author->save();
-
+        
         DB::table('role_user')->where('user_id', $id)->delete();
-
         foreach($request->roles as $value){
             $author->attachRole($value);
         }
-
+        $author->save();
         return redirect('/admin/authors')->with('success', 'Author Edit success');
     }
 
@@ -133,5 +132,17 @@ class AuthorController extends Controller
         User::where('id', $id)->delete();
 
         return redirect('/admin/authors')->with('success', "author deleted"); 
+    }
+
+    public function status($id){
+        $user = User::find($id);
+        if($user->status === 1){
+            $user->status = 0;
+        }else{
+            $user->status = 1;
+        }
+        $user->save();
+
+        return redirect('admin/authors')->with('success', 'author status changed');
     }
 }
