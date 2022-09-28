@@ -49,7 +49,8 @@ Auth::routes();
 
 //TERMS AND CONDITION
 Route::get('/termscondition','App\Http\Controllers\Auth\TermsConditionController@termscondition');
-
+//LIKE
+Route::get('/liked/{id}', 'App\Http\Controllers\LikesController@like');
 
 //WEBSITE
 Route::get('/',[HomePageController::class, 'index'])->name('landing');//landing page
