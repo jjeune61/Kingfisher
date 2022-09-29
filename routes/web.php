@@ -74,8 +74,8 @@ Route::group(['prefix'=>'', 'middleware'=>'auth'], function(){
 });
 
 //ADMIN SIDE
-Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');  
+Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
+    Route::get('/', [DashboardController::class, 'index',])->name('dashboard');  
     
     Route::get('/authors', [AuthorController::class, 'index'])->name('authors');
     Route::get('/authors/create', [AuthorController::class, 'create']);
@@ -134,9 +134,12 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
 
 });
     //PUBLICATION SIDE
+
+    
     Route::group(['prefix'=>'/publication', 'middleware'=>'auth'], function(){
 
-        Route::group(['prefix'=>'/writer', 'middleware'=>'auth'], function(){
+    //Writer
+    Route::prefix('writer')->middleware(['auth', 'isWriter'])->group(function(){
         Route::get('/', [WriterDashboardController::class, 'index'])->name('writerDashboard');
 
         Route::get('/articles', [WriterArticleController::class, 'index'])->name('writerArticles');
@@ -150,8 +153,8 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::put('/drafts/edit/{id}', [DraftController::class, 'update'])->name('draft-update');
 
         });
-
-        Route::group(['prefix'=>'/section', 'middleware'=>'auth'], function(){
+    //Section
+    Route::prefix('section')->middleware(['auth', 'isSection'])->group(function(){
         Route::get('/', [SectionDashboardController::class, 'index'])->name('sectionDashboard');
 
         Route::get('/pendings', [PendingController::class, 'index'])->name('sectionPendings');
@@ -160,8 +163,8 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::post('/pendings/disapprove/{id}', [PendingController::class, 'disapprove'])->name('sectionPending-disapprove');
 
         });
-
-        Route::group(['prefix'=>'/copy', 'middleware'=>'auth'], function(){
+    //copy
+    Route::prefix('copy')->middleware(['auth', 'isCopy'])->group(function(){
         Route::get('/', [CopyDashboardController::class, 'index'])->name('copyDashboard');
     
         Route::get('/pendings', [CopyPendingController::class, 'index'])->name('copyPendings');
@@ -170,8 +173,8 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::post('/pendings/disapprove/{id}', [CopyPendingController::class, 'disapprove'])->name('copyPending-disapprove');
     
             });
-
-        Route::group(['prefix'=>'/associate', 'middleware'=>'auth'], function(){
+    //Associate
+    Route::prefix('associate')->middleware(['auth', 'isAssociate'])->group(function(){
         Route::get('/', [AssociateDashboardController::class, 'index'])->name('associateDashboard');
     
         Route::get('/pendings', [AssociatePendingController::class, 'index'])->name('associatePendings');
@@ -180,8 +183,8 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::post('/pendings/disapprove/{id}', [AssociatePendingController::class, 'disapprove'])->name('associatePending-disapprove');
 
             });
-
-        Route::group(['prefix'=>'/eic', 'middleware'=>'auth'], function(){
+    //EIC
+    Route::prefix('eic')->middleware(['auth', 'isEIC'])->group(function(){
         Route::get('/', [EICDashboardController::class, 'index'])->name('eicDashboard');
         
         Route::get('/articles', [EICArticleController::class, 'index'])->name('eicArticle');
