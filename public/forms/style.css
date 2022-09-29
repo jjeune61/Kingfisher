@@ -50,7 +50,8 @@ iframe {
 	border: none !important;
 }
 .bodyb{
-    background-image: url("BG.jpg")
+    background-image: url("BG.jpg");
+
 }
 .wrapper {
   display: flex;
