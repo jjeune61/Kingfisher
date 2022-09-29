@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
-  @section('content')
+@section('content')
 
-<div class="containers" center>
-        <div id="formTCHeader">
-            <h1 class="pw"> Terms and Conditions</h1>
-
-        </div>
+<div class="container" >
+    <div id="formTCHeader">
+        <h1 class="pw"> Terms and Conditions</h1>
+    </div>
 <div class="text">
 
 <p>1. <b>Introduction</b></p>
@@ -100,12 +99,12 @@
 </div>
 
         <div id="formFooter">
-            <button class="button" >
-            <a class="underlineHover a" href="{{ url('/register') }}">OK</a>
-            </button>        
+            <button type="button" class="btn btn-outline-danger">
+                <a  class="text-black underlineHover a" href="{{ url('/') }}">DECLINE</a>
+            </button>
+            <button type="button" class="btn btn-success">
+                <a  class="text-white underlineHover a" href="{{ url('/register') }}">ACCEPT</a>
+            </button>
         </div>
-
-        
-
-    </div>
+</div>
 @endsection

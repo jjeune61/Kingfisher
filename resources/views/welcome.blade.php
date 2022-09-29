@@ -129,7 +129,7 @@
         </div>
     </div>
     @endforeach
-    <p class="divider"><a href="#">More News&nbsp;&raquo;</a></p>
+    <p class="divider"><a href="{{ url('/articles') }}">More News&nbsp;&raquo;</a></p>
 </div>
 <!-- Mobile News Section -->
 </div>
@@ -158,7 +158,7 @@
             </div>
         </div>
     @endforeach
-    <p class="widget_divider"><a href="#" target="_self">More News&nbsp;&raquo;</a></p>
+    <p class="widget_divider"><a href="{{ url('/articles') }}" target="_self">More News&nbsp;&raquo;</a></p>
 </div>
 <!-- Popular News -->
 

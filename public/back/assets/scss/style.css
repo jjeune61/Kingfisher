@@ -825,7 +825,7 @@ textarea {
   width: 100%; }
 
 aside.left-panel {
-  background: #272c33;
+  background: #015a15;
   display: table-cell;
   height: 100vh;
   min-height: 100%;
@@ -835,7 +835,7 @@ aside.left-panel {
   transition: width 0.3s ease; }
 
 .navbar {
-  background: #272c33;
+  background: #015a15;
   border-radius: 0;
   border: none;
   display: block;
@@ -870,7 +870,7 @@ aside.left-panel {
     .navbar .navbar-brand.hidden {
       display: none; }
   .navbar .menu-title {
-    border-bottom: 1px solid #4e4e52;
+    border-bottom: 1px solid #0c0c0c;
     color: #9496a1;
     clear: both;
     display: block;

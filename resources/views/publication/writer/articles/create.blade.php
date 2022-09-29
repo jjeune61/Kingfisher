@@ -56,16 +56,21 @@
                                 {{Form::textarea('description', '',['class'=>'form-control', 'id'=>'article-ckeditor'])}}
                             </div>
                             <div>
-                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                    <span id="payment-button-amount">Submit</span>
-                                    <span id="payment-button-sending" style="display:none;">Creating…</span>
+                                <button type="submit" name="action" value="submit"  class="btn btn-lg btn-info btn-block"> 
+                                    <span id="submit-button-lbl">Submit</span>
+                                </button>
+                                <button type="submit" name="action" value="instant"  class="btn btn-lg btn-info btn-block">
+                                    <span id="instant-button-lbl">Submit to EIC</span>
+                                </button>
+                                <button type="submit" name="action" value="draft"  class="btn btn-lg btn-info btn-block">
+                                    <span id="draft-button-lbl">Save to draft</span>
                                 </button>
                             </div>
                         {!! Form::close() !!}
                     </div>
                 </div>
             </div>
-        </div> <!-- .card -->
+        </div> 
     </div>
 </div>
 @endsection

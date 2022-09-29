@@ -5,7 +5,12 @@ namespace App\Providers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Setting;
+use Illuminate\Validation\Rules\Password;
+// use Illuminate\Support\Facades\Password;
 use Illuminate\Support\ServiceProvider;
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Schema::defaultStringLength(191);
     }
 
     /**
@@ -25,7 +30,24 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
+    {   
+        // to enable http links when using https 
+        // if(env('APP_ENV') != 'local'){
+        //     URL::forceScheme('https');
+        // }
+
+            //password validation
+        Password::defaults(function () {
+            return Password::min(8)
+                        ->letters()
+                        ->numbers()
+                        ->mixedCase()
+                        ->symbols()
+                        ->uncompromised();
+        });
+
+        if (!app()->runningInConsole()) {
+
         $settings = Setting::all(); //site settings to implement in frontend
         foreach ($settings as $key => $setting) {
             if($key === 0) $system_name = $setting->value;
@@ -47,5 +69,6 @@ class AppServiceProvider extends ServiceProvider
         );
         
         view()->share('shareData', $shareData);
+        }
     }   
 }

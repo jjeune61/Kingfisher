@@ -7,8 +7,11 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
+use Symfony\Component\Console\Input\Input;
 
 class AuthorController extends Controller
 {
@@ -30,8 +33,8 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name', 'id');
-        return view('admin.author.create', compact('roles'));
+        $userTypes=DB::table('user_type')->pluck('name', 'id');
+        return view('admin.author.create', compact('userTypes'));
     }
 
     /**
@@ -45,21 +48,16 @@ class AuthorController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|size:8',
-            'roles.*'=>'required'
+            'password' => ['required', Password::defaults()],//rule from appserviceprovider
+            'userTypes'=>'required'
         ]);
-
         $author = new User;
         $author->name = $request->name;
         $author->email = $request->email;
         $author->password = Hash::make($request->password);
-        $author->user_type = 2;
+        $author->user_type = $request->userTypes;
         $author->status = 1;
         $author->save();
-
-        foreach($request->roles as $value){
-            $author->attachRole($value);
-        }
 
         return redirect('/admin/authors')->with('success', 'Author created success');
     }
@@ -84,10 +82,9 @@ class AuthorController extends Controller
     public function edit($id)
     {
         $author=User::find($id);
-        $roles=Role::pluck('name','id');
-        $selectedRoles=DB::table('role_user')->where('user_id',$id) ->pluck('role_id')->toArray();
+        $userTypes=DB::table('user_type')->pluck('name','id');
 
-        return view('admin.author.edit',compact('author','roles','selectedRoles'));
+        return view('admin.author.edit',compact('author','userTypes'));
     }
 
     /**
@@ -100,26 +97,18 @@ class AuthorController extends Controller
     public function update(Request $request, $id)
     {
 
-        
-
         $this->validate($request, [
             'name' => 'required',
             'email' => 'unique:users,email,'.$id,
-            'password' => 'required|size:8',
-            'roles.*'=>'required'
+            'password' => ['required', Password::defaults()],//rule from appserviceprover
+            'userTypes'=>'required'
         ]);
         $author = User::find($id);
         $author->name = $request->name;
         $author->email = $request->email;
         $author->password = Hash::make($request->password);
+        $author->user_type = $request->userTypes;
         $author->save();
-
-        DB::table('role_user')->where('user_id', $id)->delete();
-
-        foreach($request->roles as $value){
-            $author->attachRole($value);
-        }
-
         return redirect('/admin/authors')->with('success', 'Author Edit success');
     }
 
@@ -134,5 +123,17 @@ class AuthorController extends Controller
         User::where('id', $id)->delete();
 
         return redirect('/admin/authors')->with('success', "author deleted"); 
+    }
+
+    public function status($id){
+        $user = User::find($id);
+        if($user->status === 1){
+            $user->status = 0;
+        }else{
+            $user->status = 1;
+        }
+        $user->save();
+
+        return redirect('admin/authors')->with('success', 'author status changed');
     }
 }

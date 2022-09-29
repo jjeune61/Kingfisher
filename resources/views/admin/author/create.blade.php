@@ -26,7 +26,7 @@
                 <div id="pay-invoice">
                     <div class="card-body">
                         <div class="card-title">
-                            <h3 class="text-center">Author</h3>
+                            <h3 class="text-center">User</h3>
                         </div>
                         @if(count($errors)>0)
                             <div class="alert alert-danger" role="alert">
@@ -52,14 +52,13 @@
                                 {{Form::password('password',['class'=>'form-control', 'id'=>'password'])}}
                             </div>
                             <div class="form-group">
-                                {{Form::label('roles', 'Roles', array('class'=>'control-label mb-1'))}}
-                                {{ Form::select('roles[]', $roles, null, ['class'=>'form-control myselect', 'placeholder'=>'Select Roles']) }}
+                                {{Form::label('userTypes', 'User Type', array('class'=>'control-label mb-1'))}}
+                                {{ Form::select('userTypes', $userTypes, ['class'=>'myselect', 'data-placeholder'=>'Select User Type']) }}
                             </div>
 
                             <div>
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                     <span id="payment-button-amount">Submit</span>
-                                    <span id="payment-button-sending" style="display:none;">Creating…</span>
                                 </button>
                             </div>
                         

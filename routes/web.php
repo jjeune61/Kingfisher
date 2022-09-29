@@ -1,5 +1,12 @@
 <?php
+//website
+use App\Http\Controllers\CommentPageController;
+use App\Http\Controllers\ContentPageController;
+use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\NewsPageController;//Articles
+use App\Http\Controllers\ProfileController;
 
+//admin side
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AuditController;
 use App\Http\Controllers\Admin\AuthorController;//Users 
@@ -9,11 +16,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\CommentPageController;
-use App\Http\Controllers\ContentPageController;
-use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\NewsPageController;//Articles
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\TermsConditionController;
+//publication side
 use App\Http\Controllers\Publication\Associate\DashboardController as AssociateDashboardController;
 use App\Http\Controllers\Publication\Associate\PendingController as AssociatePendingController;
 use App\Http\Controllers\Publication\Copy\DashboardController as CopyDashboardController;
@@ -27,6 +31,7 @@ use App\Http\Controllers\Publication\Section\PendingController;
 use App\Http\Controllers\Publication\Writer\ArticleController as WriterArticleController;
 use App\Http\Controllers\Publication\Writer\DashboardController as WriterDashboardController;
 use App\Http\Controllers\Publication\Writer\DraftController;
+use App\Http\Controllers\SearchController;
 use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +57,8 @@ Route::get('/termscondition','App\Http\Controllers\Auth\TermsConditionController
 //LIKE
 Route::get('/liked/{id}', 'App\Http\Controllers\LikesController@like');
 
+Route::get('/termscondition', [TermsConditionController::class, 'termscondition']);//TERMS AND CONDITION
+
 //WEBSITE
 Route::get('/',[HomePageController::class, 'index'])->name('landing');//landing page
 
@@ -59,20 +66,24 @@ Route::get('/articles',[NewsPageController::class, 'index'])->name('articles');/
 Route::get('/articles/{id}',[NewsPageController::class, 'listing']);//article section category
 
 Route::get('/content/{slug}',[ContentPageController::class, 'index']);//article auth content
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');//search page
+
 Route::group(['prefix'=>'', 'middleware'=>'auth'], function(){
-    Route::get('/comments', [CommentPageController::class, 'index'])->name('comments');
-    Route::post('/comments', [CommentPageController::class, 'store']);
+    Route::get('/forum', [CommentPageController::class, 'index'])->name('forum');
+    Route::post('/forum', [CommentPageController::class, 'store']);
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 });
 
 //ADMIN SIDE
-Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');  
+Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
+    Route::get('/', [DashboardController::class, 'index',])->name('dashboard');  
     
     Route::get('/authors', [AuthorController::class, 'index'])->name('authors');
     Route::get('/authors/create', [AuthorController::class, 'create']);
     Route::post('/authors/store', [AuthorController::class, 'store']);
+    Route::put('/authors/status/{id}', [AuthorController::class, 'status']);
     Route::get('/authors/edit/{id}', [AuthorController::class, 'edit'])->name('author-edit');
     Route::put('/authors/edit/{id}', [AuthorController::class, 'update'])->name('author-update');
     Route::delete('/authors/delete/{id}', [AuthorController::class, 'destroy']);
@@ -101,19 +112,19 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
     
     Route::get('/audits', [AuditController::class, 'index'])->name('audit');
 
-    Route::get('/roles', [RoleController::class, 'index'])->name('roles');
-    Route::get('/roles/create', [RoleController::class, 'create']);
-    Route::post('/roles/store', [RoleController::class, 'store']);
-    Route::get('/roles/edit/{id}', [RoleController::class, 'edit'])->name('role-edit');
-    Route::put('/roles/edit/{id}', [RoleController::class, 'update'])->name('role-update');
-    Route::delete('/roles/delete/{id}', [RoleController::class, 'destroy']);
+    // Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+    // Route::get('/roles/create', [RoleController::class, 'create']);
+    // Route::post('/roles/store', [RoleController::class, 'store']);
+    // Route::get('/roles/edit/{id}', [RoleController::class, 'edit'])->name('role-edit');
+    // Route::put('/roles/edit/{id}', [RoleController::class, 'update'])->name('role-update');
+    // Route::delete('/roles/delete/{id}', [RoleController::class, 'destroy']);
 
-    Route::get('/permission', [PermissionController::class, 'index'])->name('permissions');
-    Route::get('/permission/create', [PermissionController::class, 'create']);
-    Route::post('/permission/store', [PermissionController::class, 'store']);
-    Route::get('/permission/edit/{id}', [PermissionController::class, 'edit'])->name('permission-edit');
-    Route::put('/permission/edit/{id}', [PermissionController::class, 'update'])->name('permission-update');
-    Route::delete('/permission/delete/{id}', [PermissionController::class, 'destroy']);
+    // Route::get('/permission', [PermissionController::class, 'index'])->name('permissions');
+    // Route::get('/permission/create', [PermissionController::class, 'create']);
+    // Route::post('/permission/store', [PermissionController::class, 'store']);
+    // Route::get('/permission/edit/{id}', [PermissionController::class, 'edit'])->name('permission-edit');
+    // Route::put('/permission/edit/{id}', [PermissionController::class, 'update'])->name('permission-update');
+    // Route::delete('/permission/delete/{id}', [PermissionController::class, 'destroy']);
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
     Route::put('/settings/update', [SettingController::class, 'update'])->name('settings-update');
@@ -126,14 +137,18 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
 
 });
     //PUBLICATION SIDE
+
+    
     Route::group(['prefix'=>'/publication', 'middleware'=>'auth'], function(){
 
-        Route::group(['prefix'=>'/writer', 'middleware'=>'auth'], function(){
+    //Writer
+    Route::prefix('writer')->middleware(['auth', 'isWriter'])->group(function(){
         Route::get('/', [WriterDashboardController::class, 'index'])->name('writerDashboard');
 
         Route::get('/articles', [WriterArticleController::class, 'index'])->name('writerArticles');
         Route::get('/articles/create', [WriterArticleController::class, 'create']);
         Route::post('/articles/store', [WriterArticleController::class, 'store']);
+
 
         
         Route::get('/drafts', [DraftController::class, 'index'])->name('writerArticleDrafts');
@@ -141,8 +156,8 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::put('/drafts/edit/{id}', [DraftController::class, 'update'])->name('draft-update');
 
         });
-
-        Route::group(['prefix'=>'/section', 'middleware'=>'auth'], function(){
+    //Section
+    Route::prefix('section')->middleware(['auth', 'isSection'])->group(function(){
         Route::get('/', [SectionDashboardController::class, 'index'])->name('sectionDashboard');
 
         Route::get('/pendings', [PendingController::class, 'index'])->name('sectionPendings');
@@ -151,8 +166,8 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::post('/pendings/disapprove/{id}', [PendingController::class, 'disapprove'])->name('sectionPending-disapprove');
 
         });
-
-        Route::group(['prefix'=>'/copy', 'middleware'=>'auth'], function(){
+    //copy
+    Route::prefix('copy')->middleware(['auth', 'isCopy'])->group(function(){
         Route::get('/', [CopyDashboardController::class, 'index'])->name('copyDashboard');
     
         Route::get('/pendings', [CopyPendingController::class, 'index'])->name('copyPendings');
@@ -161,8 +176,8 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::post('/pendings/disapprove/{id}', [CopyPendingController::class, 'disapprove'])->name('copyPending-disapprove');
     
             });
-
-        Route::group(['prefix'=>'/associate', 'middleware'=>'auth'], function(){
+    //Associate
+    Route::prefix('associate')->middleware(['auth', 'isAssociate'])->group(function(){
         Route::get('/', [AssociateDashboardController::class, 'index'])->name('associateDashboard');
     
         Route::get('/pendings', [AssociatePendingController::class, 'index'])->name('associatePendings');
@@ -171,8 +186,8 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::post('/pendings/disapprove/{id}', [AssociatePendingController::class, 'disapprove'])->name('associatePending-disapprove');
 
             });
-
-        Route::group(['prefix'=>'/eic', 'middleware'=>'auth'], function(){
+    //EIC
+    Route::prefix('eic')->middleware(['auth', 'isEIC'])->group(function(){
         Route::get('/', [EICDashboardController::class, 'index'])->name('eicDashboard');
         
         Route::get('/articles', [EICArticleController::class, 'index'])->name('eicArticle');
@@ -196,8 +211,7 @@ Route::group(['prefix'=>'/admin', 'middleware'=>'auth'], function(){
         Route::get('/pendings/edit/{id}', [EICPendingController::class, 'edit'])->name('eicPending-edit');
         Route::put('/pendings/approve/{id}', [EICPendingController::class, 'approve'])->name('eicPending-approve');
         Route::post('/pendings/disapprove/{id}', [EICPendingController::class, 'disapprove'])->name('eicPending-disapprove');
-         
-   
-            });
+                
+        });
 
     });

@@ -42,13 +42,12 @@
                           <div class="card-body">
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                               <thead>
-                                <tr>
+                                <tr >
                                   <th>#</th>
                                   <th>Name</th>
                                   <th>Email</th>
                                   <th>Status</th>
                                   <th>Type</th>
-                                  <th>Role</th>
                                   <th>Action</th>
                                 </tr>
                               </thead>
@@ -58,18 +57,35 @@
                                   <td>{{ ++$i }}</td>
                                   <td>{{ $author->name }}</td>
                                   <td>{{ $author->email }}</td>
-                                  <td>{{ $author->status }}</td>
-                                  <td>{{ $author->user_type }}</td>
-                                  <td>
-                                    @if ($author->roles()->get())
-                                      <ul style="padding:20px; margin:20px">
-                                        @foreach ($author->roles()->get() as $role)
-                                          <li>{{ $role->name }}</li>
-                                        @endforeach
-                                      </ul>
-                                    @endif
+                                  <td class="text-center">
+                                    {{ Form::open(['method'=>'put','url'=>['/admin/authors/status/'. $author->id],'style'=>'display:inline']) }}
+                                        @if ($author->status === 1)
+                                            {{ Form::submit('Deactivate', ['class'=>'btn btn-danger']) }}
+                                            @else
+                                            {{ Form::submit('Activate', ['class'=>'btn btn-success']) }}
+                                        @endif
+                                        {{ Form::close() }}
                                   </td>
                                   <td>
+                                    @if($author->user_type === 1)
+                                      Admin
+                                    @elseif ($author->user_type === 2)
+                                      Student
+                                    @elseif ($author->user_type === 3)
+                                      Writer
+                                    @elseif ($author->user_type === 4)
+                                      Section Editor
+                                    @elseif ($author->user_type === 5)
+                                      Creatives Editor
+                                    @elseif ($author->user_type === 6)
+                                      Associate Editor	
+                                    @elseif ($author->user_type === 7)
+                                      Editor in Chief
+                                    @else
+                                      {{ $author->user_type }}
+                                    @endif
+                                  </td>
+                                  <td class="text-center">
                                     <a href="{{ url('/admin/authors/edit/'.$author->id) }}" class="btn btn-primary">Edit</a>
 
                                     {{ Form::open(['method'=>'delete','url'=>['/admin/authors/delete/'. $author->id], 

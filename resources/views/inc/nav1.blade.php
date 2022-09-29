@@ -56,12 +56,20 @@
                                                 href="{{ route('dashboard') }}"
                                             @elseif (Auth::user()->user_type == 3)
                                                 href="{{ route('writerDashboard') }}"
+                                            @elseif (Auth::user()->user_type == 4)
+                                                href="{{ route('sectionDashboard') }}"
+                                            @elseif (Auth::user()->user_type == 5)
+                                                href="{{ route('copyDashboard') }}"
+                                            @elseif (Auth::user()->user_type == 6)
+                                                href="{{ route('associateDashboard') }}"
+                                            @elseif (Auth::user()->user_type == 7)
+                                                href="{{ route('eicDashboard') }}"
                                             @endif
                                         >Dashboard</a></li>
                                     @endif
 
                                     <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
-                                    <li><a class="dropdown-item">Your Content</a></li>
+                                    {{-- <li><a class="dropdown-item">Your Content</a></li> --}}
                                     <li><a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -77,22 +85,20 @@
                         </ul>
                         <!-- user dropdown Section (language section)-->
 
-                        <ul class="nav-cta hidden-xs">
+                        <ul class="nav navbar-brand hidden-xs">
                             <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><i
                                     class="fa fa-search"></i></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="head-search">
-                                            <form role="form">
-                                                <!-- Input Group -->
+                                            {!! Form::open(['url' => '/search', 'method'=>'get', 'enctype'=>'multipart/form-data']) !!}
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Type Something"> <span class="input-group-btn">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-primary">Search
-                                                                            </button>
-                                                                        </span></div>
-                                            </form>
+                                                    {{Form::text('search', request()->query('search'), ['class' => 'form-control', 'placeholder' => 'type something...'] )}}
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-success">Search</button>
+                                                </span>
+                                                </div>
+                                            {!! Form::close() !!}
                                         </div>
                                     </li>
                                 </ul>
@@ -118,6 +124,7 @@
                         </button>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
+                    
                     <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav">
                             <li><a href="{{ route('landing') }}">Home</a></li>
@@ -140,13 +147,14 @@
                                 </ul>
                             </li>      
                             @auth
-                            <li><a href="{{ route('comments') }}">Comment Section</a></li>
+                            <li><a href="{{ route('forum') }}">Forum Section</a></li>
                             @endauth
                         </ul>
                     </div>
                     <!-- .navbar-collapse -->
                 </div>
                 <!-- .container -->
+                
             </nav>
             <!-- .nav -->
         </div>

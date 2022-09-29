@@ -25,6 +25,6 @@ class CommentPageController extends Controller
         $comment->status = 0;
         $comment->save();
 
-        return redirect('/comments');
+        return redirect('/forum');
     }
 }
