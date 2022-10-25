@@ -50,7 +50,10 @@ iframe {
 	border: none !important;
 }
 .bodyb{
-    background-image: url("BG.jpg");
+    background-image: url("BG2.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 
 }
 .wrapper {
